@@ -1,15 +1,15 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = "!"
+const config = require("./config.json");
 
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
 client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).split(/ +/);
+	const args = message.content.slice(config.prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
 	if (command === 'embed') {
@@ -24,4 +24,4 @@ client.on('message', message => {
 	// other commands...
 });
 
-client.login('NzE5NDMwNTUwOTMwMzI1NTY0.Xt3ZBw.boKfq_xjZMCmGbc5NmY_H6f2asY');
+client.login(config.token);
